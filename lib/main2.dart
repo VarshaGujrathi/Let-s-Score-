@@ -21,7 +21,7 @@ class MyApp extends StatelessWidget {
 }
 
 class SplashScreen extends StatefulWidget {
-  const SplashScreen({super.key});
+  const SplashScreen({Key? key}) : super(key: key);
 
   @override
   _SplashScreenState createState() => _SplashScreenState();
@@ -29,23 +29,41 @@ class SplashScreen extends StatefulWidget {
 
 class _SplashScreenState extends State<SplashScreen> {
   int _currentIndex = 0;
-  final List<String> _images = [
-    "assets/login.jpg", // New logo image at the beginning
-    "assets/image1.jpg",
-    "assets/image2.jpg",
-    "assets/image3.jpg"
+  final List<Map<String, dynamic>> _screens = [
+    {
+      'image': "assets/login.png",
+      'animation': "assets/black.json",
+    },
+    {
+      'image': "assets/image1.jpg",
+      'animation': "assets/black.json",
+    },
+    {
+      'image': "assets/image2.jpg",
+      'animation': "assets/black.json",
+    },
+    {
+      'image': "assets/image3.jpg",
+      'animation': "assets/black.json",
+    },
   ];
 
   @override
   void initState() {
     super.initState();
-    for (int i = 1; i <= _images.length; i++) {
-      Future.delayed(Duration(seconds: i * 3), () {
-        if (i < _images.length) {
-          setState(() {
-            _currentIndex = i;
-          });
-        } else {
+    _startSplashSequence();
+  }
+
+  void _startSplashSequence() {
+    // Start displaying images and animation after a delay
+    for (int i = 0; i < _screens.length + 1; i++) {
+      Future.delayed(Duration(seconds: i * 2), () {
+        setState(() {
+          _currentIndex = i;
+        });
+
+        if (i == _screens.length) {
+          // After displaying all screens, navigate to login page
           Navigator.pushReplacement(
             context,
             MaterialPageRoute(builder: (context) => LoginPage()),
@@ -64,28 +82,33 @@ class _SplashScreenState extends State<SplashScreen> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Padding(
-                padding: const EdgeInsets.only(top: 135),
-                child: Image.asset(
-                  _images[_currentIndex],
-                  height: 450,
+              if (_currentIndex < _screens.length)
+                Column(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.only(top: 135),
+                      child: Image.asset(
+                        _screens[_currentIndex]['image'],
+                        height: 450,
+                      ),
+                    ),
+                    Transform.translate(
+                      offset: Offset(0, -4),
+                      child: Lottie.asset(
+                        _screens[_currentIndex]['animation'],
+                        height: 175,
+                      ),
+                    ),
+                  ],
                 ),
-              ),
-              Text(
-                "Let's Score !",
-                style: TextStyle(
-                  fontSize: 30,
-                  fontWeight: FontWeight.w700,
-                  fontStyle: FontStyle.italic,
-                  color: Colors.black,
-                ),
-              ),
-              if (_currentIndex == 0)
-                Transform.translate(
-                  offset: Offset(0, -4),
-                  child: Lottie.asset(
-                    "assets/black.json",
-                    height: 175,
+              if (_currentIndex == _screens.length)
+                Text(
+                  "Let's Score!",
+                  style: TextStyle(
+                    fontSize: 30,
+                    fontWeight: FontWeight.w700,
+                    fontStyle: FontStyle.italic,
+                    color: Colors.black,
                   ),
                 ),
             ],
