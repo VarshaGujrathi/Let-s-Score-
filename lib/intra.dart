@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'game.dart'; // Import the game.dart file
 
-class PreScorePage extends StatelessWidget {
+class IntraPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -21,14 +21,14 @@ class PreScorePage extends StatelessWidget {
           children: [
             SizedBox(height: 50), // Add space at the top to move content upwards
             Text(
-              'Pre Score !',
+              'Intra !',
               style: TextStyle(
                 color: Colors.white,
                 fontSize: 42,
                 fontWeight: FontWeight.bold,
               ),
             ),
-            SizedBox(height: 50), // Add more space to shift buttons down
+           SizedBox(height: 50), // Add more space to shift buttons down
             buildButton(context, 'Registration'),
             SizedBox(height: 20), // Add space between buttons
             buildButton(context, 'Schedule'),

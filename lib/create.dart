@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 // ignore: unused_import
 import 'login.dart'; // Import the login.dart file
-import 'game.dart'; // Import the game.dart file
+import 'option.dart'; // Import the option.dart file
 
 class CreateAccountPage extends StatelessWidget {
   @override
@@ -33,7 +33,7 @@ class CreateAccountPage extends StatelessWidget {
                   onPressed: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => GamePage()), // Navigate to GamePage
+                      MaterialPageRoute(builder: (context) => OptionPage()), // Navigate to OptionPage
                     );
                   },
                   style: ElevatedButton.styleFrom(

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'create.dart'; // Import the create.dart file
-import 'game.dart'; // Import the game.dart file
+import 'option.dart'; // Import the option.dart file
 
 class LoginPage extends StatelessWidget {
   @override
@@ -11,7 +11,7 @@ class LoginPage extends StatelessWidget {
         backgroundColor: Colors.black,
         elevation: 0,
         leading: PopupMenuButton<String>(
-          icon: Icon(Icons.menu, color: Color.fromARGB(255, 255, 255, 255), size: 30),
+          icon: Icon(Icons.menu, color: Colors.white, size: 30),
           onSelected: (String result) {
             if (result == 'logout') {
               // Add your logout logic here
@@ -73,7 +73,7 @@ class LoginPage extends StatelessWidget {
                   onPressed: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => GamePage()), // Navigate to GamePage
+                      MaterialPageRoute(builder: (context) => OptionPage()), // Navigate to OptionPage
                     );
                   },
                   style: ElevatedButton.styleFrom(

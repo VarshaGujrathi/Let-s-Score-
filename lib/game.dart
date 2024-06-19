@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+// ignore: unused_import
 import 'login.dart'; // Import the login.dart file
+// ignore: unused_import
 import 'prescore.dart'; // Import the prescore.dart file
+// ignore: unused_import
 import 'score.dart'; // Import the score.dart file
 
 class GamePage extends StatelessWidget {
@@ -10,45 +13,11 @@ class GamePage extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: Colors.black,
         elevation: 0,
-        leading: PopupMenuButton<String>(
-          icon: Icon(Icons.menu, color: Colors.white, size: 30),
-          onSelected: (String result) {
-            switch (result) {
-              case 'pre_score':
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => PreScorePage()), // Navigate to PreScorePage
-                );
-                break;
-              case 'score':
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => ScorePage()), // Navigate to ScorePage
-                );
-                break;
-              case 'logout':
-                // Navigate to the login page
-                Navigator.pushReplacement(
-                  context,
-                  MaterialPageRoute(builder: (context) => LoginPage()), // Navigate to LoginPage
-                );
-                break;
-            }
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back, color: Colors.white, size: 30),
+          onPressed: () {
+            Navigator.pop(context); // Navigate back to the previous screen
           },
-          itemBuilder: (BuildContext context) => <PopupMenuEntry<String>>[
-            const PopupMenuItem<String>(
-              value: 'pre_score',
-              child: Text('Pre-score'),
-            ),
-            const PopupMenuItem<String>(
-              value: 'score',
-              child: Text('Score'),
-            ),
-            const PopupMenuItem<String>(
-              value: 'logout',
-              child: Text('Logout'),
-            ),
-          ],
         ),
       ),
       backgroundColor: Colors.black,

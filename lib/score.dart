@@ -4,24 +4,32 @@ class ScorePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white, // Set background color to white
+      backgroundColor: Colors.black, // Set background color to black
       appBar: AppBar(
-        backgroundColor: Colors.white, // Set app bar background color to white
+        backgroundColor: Colors.black,
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back, color: Colors.white),
+          onPressed: () {
+            Navigator.pop(context);
+          },
+        ), // Set app bar background color to black
       ),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start, // Align items at the top
           children: [
-            SizedBox(height: 50), // Add space at the top to move content upwards
+            SizedBox(height: 30), // Reduced space at the top to move content upwards
             Text(
               'Score !',
               style: TextStyle(
-                color: Colors.black,
-                fontSize: 35,
+                color: Colors.white,
+                fontSize: 33,
                 fontWeight: FontWeight.bold,
               ),
             ),
-            SizedBox(height: 100), // Add more space to shift buttons down
+            SizedBox(height: 50), // Reduced space to shift buttons up
+            buildButton(context, 'Registration'),
+            SizedBox(height: 20), // Add space between buttons
             buildButton(context, 'Schedule'),
             SizedBox(height: 20), // Add space between buttons
             buildButton(context, 'Rule Book'),
@@ -29,6 +37,8 @@ class ScorePage extends StatelessWidget {
             buildButton(context, 'Updates'),
             SizedBox(height: 20), // Add space between buttons
             buildButton(context, 'Winners'),
+            SizedBox(height: 20), // Add space between buttons
+            buildButton(context, 'History'),
           ],
         ),
       ),
