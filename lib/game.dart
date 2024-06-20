@@ -22,40 +22,41 @@ class GamePage extends StatelessWidget {
       ),
       backgroundColor: Colors.black,
       body: SingleChildScrollView(
-        child: Container(
-          height: MediaQuery.of(context).size.height, // Adjusted height
-          child: Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.start, // Align items at the top
-              children: [
-                SizedBox(height: 20), // Add space between text and image
-                Text(
-                  'Register Now!',
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 33,
-                    fontWeight: FontWeight.w900,
-                  ),
+        child: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start, // Align items at the top
+            children: [
+              SizedBox(height: 20), // Add space between text and image
+              Text(
+                'Register Now!',
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 33,
+                  fontWeight: FontWeight.w900,
                 ),
-                SizedBox(height: 20), // Add space between text and buttons
-                buildButton('Volleyball'),
-                SizedBox(height: 10), // Add space between buttons
-                buildButton('Football'),
-                SizedBox(height: 10),
-                buildButton('Cricket'),
-                SizedBox(height: 10),
-                buildButton('Throwball'),
-                SizedBox(height: 10),
-                buildButton('Chess'),
-                SizedBox(height: 10),
-                buildButton('Table Tennis'),
-                SizedBox(height: 10),
-                buildButton('Track'),
-                SizedBox(height: 10),
-                buildButton('Badminton'),
-                SizedBox(height: 10), // Add space after the last button
-              ],
-            ),
+              ),
+              SizedBox(height: 20), // Add space between text and buttons
+              buildButton('Volleyball'),
+              SizedBox(height: 10), // Add space between buttons
+              buildButton('Football'),
+              SizedBox(height: 10),
+              buildButton('Cricket'),
+              SizedBox(height: 10),
+              buildButton('Throwball'),
+              SizedBox(height: 10),
+              buildButton('Chess'),
+              SizedBox(height: 10),
+              buildButton('Table Tennis'),
+              SizedBox(height: 10),
+              buildButton('Track'),
+              SizedBox(height: 10),
+              buildButton('Dodgeball'),
+              SizedBox(height: 10),
+              buildButton('Carrom'),
+              SizedBox(height: 10),
+              buildButton('Badminton'),
+              SizedBox(height: 10), // Add space after the last button
+            ],
           ),
         ),
       ),

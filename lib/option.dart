@@ -23,7 +23,7 @@ class OptionPage extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center, // Align items at the center
           children: [
             Text(
-              "Let's Score !",
+              "Events",
               style: TextStyle(
                 color: Colors.white,
                 fontSize: 35,
@@ -37,8 +37,10 @@ class OptionPage extends StatelessWidget {
             buildButton(context, 'Score', ScorePage()),
             SizedBox(height: 20),
             buildButton(context, 'Intra', IntraPage()),
+            SizedBox(height: 20),
+            buildButton(context, 'Inter', IntraPage()),
             SizedBox(height:20), // Add space between buttons
-            buildButton(context, 'Darbi', DarbiPage()), // Navigate to DarbiPage
+            buildButton(context, 'Derby', DarbiPage()), // Navigate to DarbiPage
             SizedBox(height: 100), // Add space at the bottom to shift buttons up
           ],
         ),

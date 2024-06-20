@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'dart:async';
+import 'adminuser.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -20,22 +21,22 @@ class _SplashScreenState extends State<SplashScreen> {
   void initState() {
     super.initState();
     // Show second image after 10 seconds
-    Future.delayed(const Duration(seconds: 10), () {
+    Future.delayed(const Duration(seconds: 3), () {
       setState(() {
         _showImage1 = false;
         _showImage2 = true;
       });
     });
     // Show third image after 20 seconds
-    Future.delayed(const Duration(seconds: 20), () {
+    Future.delayed(const Duration(seconds: 6), () {
       setState(() {
         _showImage2 = false;
         _showImage3 = true;
       });
     });
-    // Navigate to home screen after 30 seconds
-    Future.delayed(const Duration(seconds: 30), () {
-      Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => HomeScreen()));
+    // Navigate to AdminUser screen after 30 seconds
+    Future.delayed(const Duration(seconds: 8), () {
+      Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => AdminUser()));
     });
   }
 

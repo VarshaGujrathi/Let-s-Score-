@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'game.dart'; // Import the game.dart file
+import 'rule.dart'; // Import the rule.dart file
 
 class PreScorePage extends StatelessWidget {
   @override
@@ -38,7 +39,7 @@ class PreScorePage extends StatelessWidget {
             buildButton(context, 'Updates'),
             SizedBox(height: 20), // Add space between buttons
             buildButton(context, 'Winners'),
-             SizedBox(height: 20), // Add space between buttons
+            SizedBox(height: 20), // Add space between buttons
             buildButton(context, 'History'),
           ],
         ),
@@ -55,6 +56,11 @@ class PreScorePage extends StatelessWidget {
             Navigator.push(
               context,
               MaterialPageRoute(builder: (context) => GamePage()), // Navigate to GamePage
+            );
+          } else if (label == 'Rule Book') {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => RulePage()), // Navigate to RulePage
             );
           } else {
             // Add your button logic here for other buttons
