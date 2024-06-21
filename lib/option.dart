@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:score_app/Inter.dart';
 import 'package:score_app/intra.dart';
 import 'prescore.dart'; // Import the prescore.dart file
 import 'score.dart'; // Import the score.dart file
@@ -38,9 +39,9 @@ class OptionPage extends StatelessWidget {
             SizedBox(height: 20),
             buildButton(context, 'Intra', IntraPage()),
             SizedBox(height: 20),
-            buildButton(context, 'Inter', IntraPage()),
+            buildButton(context, 'Inter', InterPage()),
             SizedBox(height:20), // Add space between buttons
-            buildButton(context, 'Derby', DarbiPage()), // Navigate to DarbiPage
+            buildButton(context, 'Derby', DerbyPage()), // Navigate to DarbiPage
             SizedBox(height: 100), // Add space at the bottom to shift buttons up
           ],
         ),

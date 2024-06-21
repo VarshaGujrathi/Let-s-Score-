@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:score_app/rule.dart';
 import 'game.dart'; // Import the game.dart file
 
-class IntraPage extends StatelessWidget {
+class InterPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -22,7 +22,7 @@ class IntraPage extends StatelessWidget {
           children: [
             SizedBox(height: 50), // Add space at the top to move content upwards
             Text(
-              'Intra !',
+              'Inter !',
               style: TextStyle(
                 color: Colors.white,
                 fontSize: 42,

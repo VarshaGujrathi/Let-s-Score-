@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:score_app/game.dart';
+import 'package:score_app/rule.dart';
 
 class ScorePage extends StatelessWidget {
   @override
@@ -45,12 +47,24 @@ class ScorePage extends StatelessWidget {
     );
   }
 
-  Widget buildButton(BuildContext context, String label) {
+ Widget buildButton(BuildContext context, String label) {
     return Container(
       width: 200, // Set button width
       child: ElevatedButton(
         onPressed: () {
-          // Add your button logic here
+          if (label == 'Registration') {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) =>GamePage()), // Navigate to GamePage
+            );
+          } else if (label == 'Rule Book') {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => RulePage()), // Navigate to RulePage
+            );
+          } else {
+            // Add your button logic here for other buttons
+          }
         },
         child: Text(label, style: TextStyle(color: Colors.black)), // Set text color to black
         style: ElevatedButton.styleFrom(

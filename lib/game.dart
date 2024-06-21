@@ -1,10 +1,5 @@
 import 'package:flutter/material.dart';
-// ignore: unused_import
-import 'login.dart'; // Import the login.dart file
-// ignore: unused_import
-import 'prescore.dart'; // Import the prescore.dart file
-// ignore: unused_import
-import 'score.dart'; // Import the score.dart file
+import 'package:url_launcher/url_launcher.dart';
 
 class GamePage extends StatelessWidget {
   @override
@@ -16,7 +11,7 @@ class GamePage extends StatelessWidget {
         leading: IconButton(
           icon: Icon(Icons.arrow_back, color: Colors.white, size: 30),
           onPressed: () {
-            Navigator.pop(context); // Navigate back to the previous screen
+            Navigator.pop(context);
           },
         ),
       ),
@@ -24,9 +19,9 @@ class GamePage extends StatelessWidget {
       body: SingleChildScrollView(
         child: Center(
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.start, // Align items at the top
+            mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              SizedBox(height: 20), // Add space between text and image
+              SizedBox(height: 20),
               Text(
                 'Register Now!',
                 style: TextStyle(
@@ -35,9 +30,9 @@ class GamePage extends StatelessWidget {
                   fontWeight: FontWeight.w900,
                 ),
               ),
-              SizedBox(height: 20), // Add space between text and buttons
-              buildButton('Volleyball'),
-              SizedBox(height: 10), // Add space between buttons
+              SizedBox(height: 20),
+              buildButton('Volleyball', 'https://forms.gle/D1XvKn5tNBL9mjiF8'),
+              SizedBox(height: 10),
               buildButton('Football'),
               SizedBox(height: 10),
               buildButton('Cricket'),
@@ -55,7 +50,7 @@ class GamePage extends StatelessWidget {
               buildButton('Carrom'),
               SizedBox(height: 10),
               buildButton('Badminton'),
-              SizedBox(height: 10), // Add space after the last button
+              SizedBox(height: 10),
             ],
           ),
         ),
@@ -63,20 +58,38 @@ class GamePage extends StatelessWidget {
     );
   }
 
-  Widget buildButton(String label) {
+  Widget buildButton(String label, [String? url]) {
     return Container(
-      height: 50, // Set button height
-      width: 200, // Set button width
-      margin: EdgeInsets.symmetric(vertical: 5), // Add margin to create space between buttons
+      height: 50,
+      width: 200,
+      margin: EdgeInsets.symmetric(vertical: 5),
       child: ElevatedButton(
         onPressed: () {
-          // Add your button logic here
+          if (url != null) {
+            _launchURL(url);
+          } else {
+            // Handle logic for buttons without URLs
+            print('Button "$label" pressed without URL');
+          }
         },
-        child: Text(label, style: TextStyle(color: Colors.black)), // Set text color to black
+        child: Text(label, style: TextStyle(color: Colors.black)),
         style: ElevatedButton.styleFrom(
-          backgroundColor: const Color.fromARGB(255, 251, 193, 2), // Set button color to yellow
+          backgroundColor: const Color.fromARGB(255, 251, 193, 2),
         ),
       ),
     );
   }
+
+  void _launchURL(String url) async {
+  try {
+    if (await canLaunch(url)) {
+      await launch(url);
+    } else {
+      throw 'Could not launch $url';
+    }
+  } catch (e) {
+    print('Error launching URL: $e');
+  }
+}
+
 }
