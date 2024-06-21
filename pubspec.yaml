@@ -70,7 +70,7 @@ flutter:
     - assets/image1.jpg
     - assets/image2.jpg
     - assets/image3.jpg
-    - assets/login.jpg
+    - assets/login.png
     - assets/black.json
 
   # An image asset can refer to one or more resolution-specific "variants", see
