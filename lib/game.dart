@@ -2,94 +2,154 @@ import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class GamePage extends StatelessWidget {
+  const GamePage({Key? key});
+
+  Future<void> openAppWebView(String url) async {
+    if (!await launchUrl(Uri.parse(url), mode: LaunchMode.inAppWebView)) {
+      throw Exception('Could not launch $url');
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.black,
-        elevation: 0,
         leading: IconButton(
-          icon: Icon(Icons.arrow_back, color: Colors.white, size: 30),
+          icon: const Icon(Icons.arrow_back, color: Colors.white),
           onPressed: () {
-            Navigator.pop(context);
+            Navigator.of(context).pop();
           },
         ),
       ),
       backgroundColor: Colors.black,
       body: SingleChildScrollView(
-        child: Center(
+        child: SizedBox(
+          height: MediaQuery.of(context).size.height,
+          width: MediaQuery.of(context).size.width,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              SizedBox(height: 20),
-              Text(
-                'Register Now!',
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 33,
-                  fontWeight: FontWeight.w900,
+              const SizedBox(height: 20), // Adjust the height as needed to shift everything up
+              const Text(
+                'Register Now !',
+                style: TextStyle(color: Colors.white, fontSize: 37, fontWeight: FontWeight.w700),
+              ),
+              const SizedBox(height: 20), // Add space between the text and buttons
+              ElevatedButton(
+                onPressed: () {
+                  openAppWebView('https://forms.gle/X4xvEx5jBGEXApFF8');
+                },
+                child: const Text('Volleyball'),
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Color.fromARGB(255, 251, 193, 2),
+                  fixedSize: const Size(200, 50),
                 ),
               ),
-              SizedBox(height: 20),
-              buildButton('Volleyball', 'https://forms.gle/D1XvKn5tNBL9mjiF8'),
-              SizedBox(height: 10),
-              buildButton('Football'),
-              SizedBox(height: 10),
-              buildButton('Cricket'),
-              SizedBox(height: 10),
-              buildButton('Throwball'),
-              SizedBox(height: 10),
-              buildButton('Chess'),
-              SizedBox(height: 10),
-              buildButton('Table Tennis'),
-              SizedBox(height: 10),
-              buildButton('Track'),
-              SizedBox(height: 10),
-              buildButton('Dodgeball'),
-              SizedBox(height: 10),
-              buildButton('Carrom'),
-              SizedBox(height: 10),
-              buildButton('Badminton'),
-              SizedBox(height: 10),
+              const SizedBox(height: 10),
+              ElevatedButton(
+                onPressed: () {
+                  openAppWebView('https://forms.gle/X4xvEx5jBGEXApFF8');
+                },
+                child: const Text('Football'),
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Color.fromARGB(255, 251, 193, 2),
+                  fixedSize: const Size(200, 50),
+                ),
+              ),
+              const SizedBox(height: 10),
+              ElevatedButton(
+                onPressed: () {
+                  openAppWebView('https://forms.gle/X4xvEx5jBGEXApFF8');
+                },
+                child: const Text('Cricket'),
+                style: ElevatedButton.styleFrom(
+                 backgroundColor: Color.fromARGB(255, 251, 193, 2),
+                  fixedSize: const Size(200, 50),
+                ),
+              ),
+              const SizedBox(height: 10),
+              ElevatedButton(
+                onPressed: () {
+                  openAppWebView('https://forms.gle/X4xvEx5jBGEXApFF8');
+                },
+                child: const Text('Throwball'),
+                style: ElevatedButton.styleFrom(
+                 backgroundColor: Color.fromARGB(255, 251, 193, 2),
+                  fixedSize: const Size(200, 50),
+                ),
+              ),
+              const SizedBox(height: 10),
+              ElevatedButton(
+                onPressed: () {
+                  openAppWebView('https://forms.gle/X4xvEx5jBGEXApFF8');
+                },
+                child: const Text('Chess'),
+                style: ElevatedButton.styleFrom(
+                 backgroundColor: Color.fromARGB(255, 251, 193, 2),
+                  fixedSize: const Size(200, 50),
+                ),
+              ),
+              const SizedBox(height: 10),
+              ElevatedButton(
+                onPressed: () {
+                  openAppWebView('https://forms.gle/X4xvEx5jBGEXApFF8');
+                },
+                child: const Text('Table Tennis'),
+                style: ElevatedButton.styleFrom(
+                 backgroundColor: Color.fromARGB(255, 251, 193, 2),
+                  fixedSize: const Size(200, 50),
+                ),
+              ),
+              const SizedBox(height: 10),
+              ElevatedButton(
+                onPressed: () {
+                  openAppWebView('https://forms.gle/X4xvEx5jBGEXApFF8');
+                },
+                child: const Text('Track'),
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Color.fromARGB(255, 251, 193, 2),
+                  fixedSize: const Size(200, 50),
+                ),
+              ),
+              const SizedBox(height: 10),
+              ElevatedButton(
+                onPressed: () {
+                  openAppWebView('https://forms.gle/X4xvEx5jBGEXApFF8');
+                },
+                child: const Text('Dodgeball'),
+                style: ElevatedButton.styleFrom(
+                 backgroundColor: Color.fromARGB(255, 251, 193, 2),
+                  fixedSize: const Size(200, 50),
+                ),
+              ),
+              const SizedBox(height: 10),
+              ElevatedButton(
+                onPressed: () {
+                  openAppWebView('https://forms.gle/X4xvEx5jBGEXApFF8');
+                },
+                child: const Text('Carrom'),
+                style: ElevatedButton.styleFrom(
+                 backgroundColor: Color.fromARGB(255, 251, 193, 2),
+                  fixedSize: const Size(200, 50),
+                ),
+              ),
+              const SizedBox(height: 10),
+              ElevatedButton(
+                onPressed: () {
+                  openAppWebView('https://forms.gle/X4xvEx5jBGEXApFF8');
+                },
+                child: const Text('Badminton'),
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Color.fromARGB(255, 251, 193, 2),
+                  fixedSize: const Size(200, 50),
+                ),
+              ),
             ],
           ),
         ),
       ),
     );
   }
-
-  Widget buildButton(String label, [String? url]) {
-    return Container(
-      height: 50,
-      width: 200,
-      margin: EdgeInsets.symmetric(vertical: 5),
-      child: ElevatedButton(
-        onPressed: () {
-          if (url != null) {
-            _launchURL(url);
-          } else {
-            // Handle logic for buttons without URLs
-            print('Button "$label" pressed without URL');
-          }
-        },
-        child: Text(label, style: TextStyle(color: Colors.black)),
-        style: ElevatedButton.styleFrom(
-          backgroundColor: const Color.fromARGB(255, 251, 193, 2),
-        ),
-      ),
-    );
-  }
-
-  void _launchURL(String url) async {
-  try {
-    if (await canLaunch(url)) {
-      await launch(url);
-    } else {
-      throw 'Could not launch $url';
-    }
-  } catch (e) {
-    print('Error launching URL: $e');
-  }
-}
-
 }

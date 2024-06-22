@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:score_app/rule.dart';
+// ignore: unused_import
 import 'game.dart'; // Import the game.dart file
 
 class DerbyPage extends StatelessWidget {
@@ -75,3 +76,5 @@ Widget buildButton(BuildContext context, String label) {
     );
   }
 }
+
+

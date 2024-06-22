@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+// ignore: unused_import
 import 'package:score_app/game.dart';
 import 'package:score_app/rule.dart';
 

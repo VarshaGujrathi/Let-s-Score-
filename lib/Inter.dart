@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:score_app/rule.dart';
+// ignore: unused_import
 import 'game.dart'; // Import the game.dart file
 
 class InterPage extends StatelessWidget {
