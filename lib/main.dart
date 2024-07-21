@@ -1,12 +1,28 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'login.dart'; // Import the login.dart file
 
-void main() {
-  runApp(MyApp());
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  final FirebaseApp firebaseApp = await Firebase.initializeApp(
+    options: 
+    FirebaseOptions(
+      apiKey: "AIzaSyBW23r0mLgUI8hX8mv7MSX9jQjH_Xbc-2o",
+      appId: "1:306123812399:android:349d76dcbfef28e1fc60da",
+      messagingSenderId: "306123812399",
+      projectId: "letsscore-9c041",
+    ),
+  );
+
+  runApp(MyApp(initialization: Future.value(firebaseApp)));
 }
 
 class MyApp extends StatelessWidget {
+  final Future<FirebaseApp> initialization;
+
+  MyApp({Key? key, required this.initialization}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -55,7 +71,6 @@ class _SplashScreenState extends State<SplashScreen> {
   }
 
   void _startSplashSequence() {
-    // Start displaying images and animation after a delay
     for (int i = 0; i < _screens.length + 1; i++) {
       Future.delayed(Duration(seconds: i * 2), () {
         setState(() {
@@ -63,7 +78,6 @@ class _SplashScreenState extends State<SplashScreen> {
         });
 
         if (i == _screens.length) {
-          // After displaying all screens, navigate to login page
           Navigator.pushReplacement(
             context,
             MaterialPageRoute(builder: (context) => LoginPage()),
