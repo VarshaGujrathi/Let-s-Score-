@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 name: score_app
 description: "A new Flutter project."
 publish_to: 'none' # Remove this line if you wish to publish to pub.dev
@@ -35,3 +36,5 @@ flutter:
     - assets/image3.jpg
     - assets/login.png
     - assets/black.json
+=======
+>>>>>>> Stashed changes
