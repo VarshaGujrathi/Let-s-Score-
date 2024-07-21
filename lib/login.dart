@@ -1,8 +1,31 @@
 import 'package:flutter/material.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'create.dart'; // Import the create.dart file
 import 'option.dart'; // Import the option.dart file
 
 class LoginPage extends StatelessWidget {
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
+
+  Future<void> _login(BuildContext context) async {
+    try {
+      UserCredential userCredential = await FirebaseAuth.instance.signInWithEmailAndPassword(
+        email: _emailController.text,
+        password: _passwordController.text,
+      );
+
+      // Navigate to OptionPage after successful login
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(builder: (context) => OptionPage()),
+      );
+    } catch (e) {
+      // Handle login errors
+      print('Failed to login: $e');
+      // Show error dialog or message
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -50,9 +73,9 @@ class LoginPage extends StatelessWidget {
                 ),
               ),
               SizedBox(height: 20), // Add some spacing between the text and the email field
-              buildTextFieldWithIcon(Icons.email, 'Email'),
+              buildTextFieldWithIcon(Icons.email, 'Email', controller: _emailController),
               SizedBox(height: 10),
-              buildTextFieldWithIcon(Icons.lock, 'Password', obscureText: true),
+              buildTextFieldWithIcon(Icons.lock, 'Password', obscureText: true, controller: _passwordController),
               SizedBox(height: 10),
               TextButton(
                 onPressed: () {
@@ -70,12 +93,7 @@ class LoginPage extends StatelessWidget {
               SizedBox(
                 width: double.infinity,
                 child: ElevatedButton(
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => OptionPage()), // Navigate to OptionPage
-                    );
-                  },
+                  onPressed: () => _login(context),
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Color.fromARGB(255, 251, 193, 2),
                     padding: EdgeInsets.symmetric(vertical: 14),
@@ -116,8 +134,9 @@ class LoginPage extends StatelessWidget {
     );
   }
 
-  Widget buildTextFieldWithIcon(IconData icon, String label, {bool obscureText = false}) {
+  Widget buildTextFieldWithIcon(IconData icon, String label, {bool obscureText = false, TextEditingController? controller}) {
     return TextField(
+      controller: controller,
       obscureText: obscureText,
       style: TextStyle(color: Colors.white.withOpacity(0.7)), // Text color with transparency
       decoration: InputDecoration(
