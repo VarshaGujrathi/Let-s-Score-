@@ -1,9 +1,51 @@
 import 'package:flutter/material.dart';
-// ignore: unused_import
-import 'login.dart'; // Import the login.dart file
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'option.dart'; // Import the option.dart file
 
-class CreateAccountPage extends StatelessWidget {
+class CreateAccountPage extends StatefulWidget {
+  @override
+  _CreateAccountPageState createState() => _CreateAccountPageState();
+}
+
+class _CreateAccountPageState extends State<CreateAccountPage> {
+  final TextEditingController _usernameController = TextEditingController();
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
+  final TextEditingController _confirmPasswordController = TextEditingController();
+
+  Future<void> _createAccount() async {
+    try {
+      // Check if passwords match
+      if (_passwordController.text != _confirmPasswordController.text) {
+        throw Exception('Passwords do not match');
+      }
+
+      // Create user with email and password
+      UserCredential userCredential = await FirebaseAuth.instance.createUserWithEmailAndPassword(
+        email: _emailController.text,
+        password: _passwordController.text,
+      );
+
+      // Store additional user data in Firestore
+      await FirebaseFirestore.instance.collection('users').doc(userCredential.user!.uid).set({
+        'username': _usernameController.text,
+        'email': _emailController.text,
+        // Add more fields as needed
+      });
+
+      // Navigate to OptionPage after successful registration
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(builder: (context) => OptionPage()),
+      );
+    } catch (e) {
+      // Handle registration errors
+      print('Failed to create user: $e');
+      // Show error dialog or message
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -19,23 +61,18 @@ class CreateAccountPage extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               SizedBox(height: 60), // Add spacing at the top
-              buildTextFieldWithIcon(Icons.person, 'Username'),
+              buildTextFieldWithIcon(Icons.person, 'Username', controller: _usernameController),
               SizedBox(height: 10),
-              buildTextFieldWithIcon(Icons.email, 'Email'),
+              buildTextFieldWithIcon(Icons.email, 'Email', controller: _emailController),
               SizedBox(height: 10),
-              buildTextFieldWithIcon(Icons.lock, 'Password', obscureText: true),
+              buildTextFieldWithIcon(Icons.lock, 'Password', obscureText: true, controller: _passwordController),
               SizedBox(height: 10),
-              buildTextFieldWithIcon(Icons.lock, 'Confirm Password', obscureText: true),
+              buildTextFieldWithIcon(Icons.lock, 'Confirm Password', obscureText: true, controller: _confirmPasswordController),
               SizedBox(height: 20),
               SizedBox(
                 width: double.infinity,
                 child: ElevatedButton(
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => OptionPage()), // Navigate to OptionPage
-                    );
-                  },
+                  onPressed: _createAccount,
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Color.fromARGB(255, 251, 193, 2),
                     padding: EdgeInsets.symmetric(vertical: 15),
@@ -73,8 +110,10 @@ class CreateAccountPage extends StatelessWidget {
     );
   }
 
-  Widget buildTextFieldWithIcon(IconData icon, String label, {bool obscureText = false}) {
+  Widget buildTextFieldWithIcon(IconData icon, String label,
+      {bool obscureText = false, TextEditingController? controller}) {
     return TextField(
+      controller: controller,
       obscureText: obscureText,
       style: TextStyle(color: Colors.white.withOpacity(0.7)), // Text color with transparency
       decoration: InputDecoration(
