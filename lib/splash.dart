@@ -1,4 +1,4 @@
-// ignore_for_file: library_private_types_in_public_api, use_key_in_widget_constructors, prefer_const_constructors
+// ignore_for_file: library_private_types_in_public_api, use_key_in_widget_constructors, prefer_const_constructors, unused_import
 
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
@@ -6,7 +6,7 @@ import 'dart:async';
 import 'adminuser.dart';
 
 class SplashScreen extends StatefulWidget {
-  const SplashScreen({super.key});
+  const SplashScreen({Key? key}) : super(key: key);
 
   @override
   _SplashScreenState createState() => _SplashScreenState();
@@ -20,21 +20,21 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
-    // Show second image after 10 seconds
+    // Show second image after 3 seconds
     Future.delayed(const Duration(seconds: 3), () {
       setState(() {
         _showImage1 = false;
         _showImage2 = true;
       });
     });
-    // Show third image after 20 seconds
+    // Show third image after 6 seconds
     Future.delayed(const Duration(seconds: 6), () {
       setState(() {
         _showImage2 = false;
         _showImage3 = true;
       });
     });
-    // Navigate to AdminUser screen after 30 seconds
+    // Navigate to AdminUser screen after 8 seconds
     Future.delayed(const Duration(seconds: 8), () {
       Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => AdminUser()));
     });
@@ -121,12 +121,12 @@ class _SplashScreenState extends State<SplashScreen> {
   }
 }
 
-class HomeScreen extends StatelessWidget {
+class AdminUser extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Home')),
-      body: Center(child: Text('Welcome to Home Screen!')),
+      appBar: AppBar(title: Text('Admin User')),
+      body: Center(child: Text('Welcome to Admin User Screen!')),
     );
   }
 }

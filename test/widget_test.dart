@@ -1,19 +1,23 @@
-// This is a basic Flutter widget test.
-//
-// To perform an interaction with a widget in your test, use the WidgetTester
-// utility in the flutter_test package. For example, you can send tap and scroll
-// gestures. You can also use WidgetTester to find child widgets in the widget
-// tree, read text, and verify that the values of widget properties are correct.
-
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:firebase_core/firebase_core.dart';
 
 import 'package:score_app/main.dart';
 
 void main() {
   testWidgets('Counter increments smoke test', (WidgetTester tester) async {
+    // Initialize Firebase
+    final FirebaseApp firebaseApp = await Firebase.initializeApp(
+      options: FirebaseOptions(
+        apiKey: "AIzaSyBW23r0mLgUI8hX8mv7MSX9jQjH_Xbc-2o",
+        appId: "1:306123812399:android:349d76dcbfef28e1fc60da",
+        messagingSenderId: "306123812399",
+        projectId: "letsscore-9c041",
+      ),
+    );
+
     // Build our app and trigger a frame.
-    await tester.pumpWidget(MyApp(initialization: null,));
+    await tester.pumpWidget(MyApp(initialization: Future.value(firebaseApp)));
 
     // Verify that our counter starts at 0.
     expect(find.text('0'), findsOneWidget);

@@ -9,6 +9,7 @@ class LoginPage extends StatelessWidget {
 
   Future<void> _login(BuildContext context) async {
     try {
+      // ignore: unused_local_variable
       UserCredential userCredential = await FirebaseAuth.instance.signInWithEmailAndPassword(
         email: _emailController.text,
         password: _passwordController.text,
